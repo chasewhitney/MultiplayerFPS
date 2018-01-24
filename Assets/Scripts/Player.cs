@@ -37,16 +37,16 @@ public class Player : NetworkBehaviour {
         SetDefaults();
     }
 
-    private void Update()
-    {
-        if (!isLocalPlayer)
-            return;
+    //private void Update() ////// PLAYER SUICIDE, DEATH TESTING
+    //{
+    //    if (!isLocalPlayer)
+    //        return;
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            RpcTakeDamage(9999);
-        }
-    }
+    //    if (Input.GetKeyDown(KeyCode.K))
+    //    {
+    //        RpcTakeDamage(9999);
+    //    }
+    //}
 
 
     public void SetDefaults()
@@ -103,7 +103,20 @@ public class Player : NetworkBehaviour {
 
         // CALL RESPAWN METHOD
 
+        StartCoroutine(Respawn());
 
     }
+
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(GameManager.instance.matchSettings.respawnTime);
+        SetDefaults();
+        Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+        transform.position = _spawnPoint.position;
+        transform.rotation = _spawnPoint.rotation;
+
+        Debug.Log(transform.name + " respawned.");
+    }
+
 
 }
