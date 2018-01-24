@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMotor))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour {
 
     [SerializeField]
@@ -11,11 +12,23 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float lookSensitivity = 3f;
 
+    [SerializeField]
+    private float jumpVelocity = 5f;
+
+    [SerializeField]
+    private float fallMultiplier = 2.5f;
+
+    [SerializeField]
+    private float lowJumpMultiplier = 2f;
+
     private PlayerMotor motor;
+
+    Rigidbody rb;
 
     void Start()
     {
         motor = GetComponent<PlayerMotor>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -37,21 +50,33 @@ public class PlayerController : MonoBehaviour {
         // Calculate rotation as a 3D vector (turning around)
         float _yRot = Input.GetAxisRaw("Mouse X");
 
-        // Calculate rotation as a 3D vector (turning around)
         Vector3 _rotation = new Vector3(0f, _yRot, 0f) * lookSensitivity;
         
         // Apply rotation
         motor.Rotate(_rotation);
 
-        // Calculate rotation as a 3D vector (turning around)
+        // Calculate camera rotation as a 3D vector (turning around)
         float _xRot = Input.GetAxisRaw("Mouse Y");
 
-        // Calculate rotation as a 3D vector (turning around)
-        Vector3 _cameraRotation = new Vector3(_xRot, 0f, 0f) * lookSensitivity;
+        float _cameraRotationX = _xRot * lookSensitivity;
 
-        // Apply rotation
-        motor.RotateCamera(_cameraRotation);
+        // Apply camera rotation
+        motor.RotateCamera(_cameraRotationX);
+        
+        // Jumping
+        if (Input.GetButtonDown("Jump"))
+        {
+          rb.velocity = Vector3.up * jumpVelocity;
+        }
 
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier -1) * Time.deltaTime;
+        } else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+        // End Jumping
     }
 
 }
