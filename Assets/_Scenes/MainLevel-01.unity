@@ -113,6 +113,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &21819901
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114198288752677616, guid: a41a24ed64b97f248b218e634b3adebf,
+        type: 2}
+      propertyPath: componentsToDisable.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730657959289990, guid: a41a24ed64b97f248b218e634b3adebf, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.0288997
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730657959289990, guid: a41a24ed64b97f248b218e634b3adebf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.139
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730657959289990, guid: a41a24ed64b97f248b218e634b3adebf, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.1664667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730657959289990, guid: a41a24ed64b97f248b218e634b3adebf, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730657959289990, guid: a41a24ed64b97f248b218e634b3adebf, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730657959289990, guid: a41a24ed64b97f248b218e634b3adebf, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730657959289990, guid: a41a24ed64b97f248b218e634b3adebf, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730657959289990, guid: a41a24ed64b97f248b218e634b3adebf, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114198288752677616, guid: a41a24ed64b97f248b218e634b3adebf,
+        type: 2}
+      propertyPath: componentsToDisable.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a41a24ed64b97f248b218e634b3adebf, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &197579431 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: df4796b594b970842b69211cb0078c5d, type: 3}
@@ -156,6 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4578432ccd6451a45b1ff2d2fc6b9b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  matchSettings:
+    respawnTime: 3
 --- !u!4 &347142501
 Transform:
   m_ObjectHideFlags: 0
