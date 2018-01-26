@@ -28,8 +28,7 @@ public class PlayerController : MonoBehaviour {
     private float thrusterForce = 1000f;
 
     [Header("Spring settings:")]
-    [SerializeField]
-    private JointDriveMode jointMode = JointDriveMode.Position;
+  
     [SerializeField]
     private float jointSpring = 20f;
     [SerializeField]
@@ -40,12 +39,11 @@ public class PlayerController : MonoBehaviour {
     private PlayerMotor motor;
     private ConfigurableJoint joint;
 
-    Rigidbody rb;
+   
 
     void Start()
     {
         motor = GetComponent<PlayerMotor>();
-        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         joint = GetComponent<ConfigurableJoint>();
 
@@ -123,7 +121,7 @@ public class PlayerController : MonoBehaviour {
     private void SetJointSettings(float _jointSpring)
     {
         joint.yDrive = new JointDrive { // setting using joint.yDrive.maximumForce syntax doesn't work
-            mode = jointMode,
+          
             positionSpring = _jointSpring,
             maximumForce = jointMaxForce
         };
