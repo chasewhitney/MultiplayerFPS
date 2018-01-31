@@ -40,14 +40,16 @@ public class PlayerSetup : NetworkBehaviour {
             if (sceneCamera != null)
             {
                 sceneCamera.gameObject.SetActive(false);
+
+                // Disable player graphics for local player
+                SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
+
+                // Create player UI
+                playerUIInstance = Instantiate(playerUIPrefab);
+                playerUIInstance.name = playerUIPrefab.name;
             }
 
-            // Disable player graphics for local player
-            SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
-
-            // Create player UI
-            playerUIInstance = Instantiate(playerUIPrefab);
-            playerUIInstance.name = playerUIPrefab.name;
+            
 
         }
 
